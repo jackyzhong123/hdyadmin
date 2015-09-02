@@ -12,6 +12,7 @@ class MyAlbumListVC:  RootVC,UICollectionViewDelegate,UICollectionViewDataSource
 
     var listData:Array<AlbumDetail>=[]
     let resuseIdentifier:String = "Cell"
+    var IsFromHome = true
 
      @IBOutlet weak var collectionView: UICollectionView!
     
@@ -92,7 +93,15 @@ class MyAlbumListVC:  RootVC,UICollectionViewDelegate,UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        if (IsFromHome)
+        {
+            
+            
+        }else
+        {
+            NSNotificationCenter.defaultCenter().postNotificationName(AppConfig.NF_SelectAlbum, object:  self.listData [indexPath.row] , userInfo:nil);
+           self.navigationController?.popViewControllerAnimated(true);
+        }
     }
     
     

@@ -15,7 +15,7 @@ class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource {
     var listData:Array<LocationDetail>=[]
     let cellIdentifier:String = "Cell"
     @IBOutlet weak var tableView: UITableView!
-    
+    var IsFromHome = true
     
     //MARK: 页面生存周期
     override func viewDidLoad() {
@@ -54,9 +54,20 @@ class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: Table数据绑定
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var vc:LocationDetailVC  = UIHelper.GetVCWithIDFromStoryBoard(.Main, viewControllerIdentity: "LocationDetailVC") as! LocationDetailVC
-        vc.location = self.listData [indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if (IsFromHome)
+        {
+             var vc:LocationDetailVC  = UIHelper.GetVCWithIDFromStoryBoard(.Main, viewControllerIdentity: "LocationDetailVC") as! LocationDetailVC
+            vc.location = self.listData [indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else
+        {
+            NSNotificationCenter.defaultCenter().postNotificationName(AppConfig.NF_SelectLocation, object:  self.listData [indexPath.row] , userInfo:nil);
+            self.navigationController?.popViewControllerAnimated(true);
+
+            }
+        
+       
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

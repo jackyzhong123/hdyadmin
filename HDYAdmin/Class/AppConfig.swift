@@ -14,6 +14,7 @@ import UIKit
 
 class AppConfig: NSObject {
     
+    ////////////////////////////访问字符串
     //MARK: 一些基本的配置
     static let SERVICE_ROOT_PATH = "http://192.168.1.26:47897/"
     
@@ -48,7 +49,20 @@ class AppConfig: NSObject {
     //重置密码
     static var Url_ResetPwd = "api/Login/Reset"
     
+    //获取我收藏的地址或创建的地址
     static var Url_MyLocationList = "api/HuoDongService/getPlaceList"
+    
+    //新增活动
+    static var Url_AddActivity = "api/HuoDongService/AddActivity"
+    
+    
+    
+    ////////////////////////////=== Notification
+    static var NF_SelectAlbum = "SelectAlbum"
+    static var NF_SelectLocation = "SelectLocation"
+    
+    
+    
     
     
     //MARK: 一些静态函数
