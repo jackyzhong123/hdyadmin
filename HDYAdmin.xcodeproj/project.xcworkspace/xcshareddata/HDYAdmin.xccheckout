@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>691120F0-C874-46C2-B2FD-567816C8B394</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HDYAdmin</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>d678716f-5bbf-4c40-8bd5-40596feaf8c1</key>
+		<string>https://www.edonesoft.com:9443/svn/yuetuan</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Jacky/hAdmin/HDYAdmin/HDYAdmin.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>d678716f-5bbf-4c40-8bd5-40596feaf8c1</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>d678716f-5bbf-4c40-8bd5-40596feaf8c1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>d678716f-5bbf-4c40-8bd5-40596feaf8c1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>yuetuan</string>
+		</dict>
+	</array>
+</dict>
+</plist>
