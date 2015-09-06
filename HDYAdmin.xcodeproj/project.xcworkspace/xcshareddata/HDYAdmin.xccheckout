@@ -10,29 +10,31 @@
 	<string>HDYAdmin</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>d678716f-5bbf-4c40-8bd5-40596feaf8c1</key>
-		<string>https://www.edonesoft.com:9443/svn/yuetuan</string>
+		<key>CADAB737A061C0D976C171D9EC166D108F9D0C4A</key>
+		<string>https://github.com/jackyecnu/xxxxxxxxxx.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Jacky/hAdmin/HDYAdmin/HDYAdmin.xcodeproj</string>
+	<string>HDYAdmin.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>d678716f-5bbf-4c40-8bd5-40596feaf8c1</key>
-		<string>../../../../..</string>
+		<key>CADAB737A061C0D976C171D9EC166D108F9D0C4A</key>
+		<string>../..</string>
 	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jackyecnu/xxxxxxxxxx.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>d678716f-5bbf-4c40-8bd5-40596feaf8c1</string>
+	<string>CADAB737A061C0D976C171D9EC166D108F9D0C4A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
+			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>d678716f-5bbf-4c40-8bd5-40596feaf8c1</string>
+			<string>CADAB737A061C0D976C171D9EC166D108F9D0C4A</string>
 			<key>IDESourceControlWCCName</key>
-			<string>yuetuan</string>
+			<string>HDYAdmin</string>
 		</dict>
 	</array>
 </dict>

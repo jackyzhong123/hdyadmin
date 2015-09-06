@@ -1,34 +1,28 @@
 //
 //  FindPwdStep1.swift
-//  HDYAdmin
+//  HDY
 //
-//  Created by Sky on 15/9/1.
-//  Copyright (c) 2015年 HuoDongYou. All rights reserved.
+//  Created by Sky on 15/9/7.
+//  Copyright (c) 2015年 edonesoft. All rights reserved.
 //
 
 import UIKit
 
-class FindPwdStep1: RootVC ,UIAlertViewDelegate{
-
+class FindPwdStep1: RootVC,UIAlertViewDelegate {
+    
+    
     @IBOutlet weak var txtInput: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
- self.title = "忘记密码"
+        
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    override func  viewDidAppear(animated: Bool) {
-        
+    override func RenderDetail() {
         txtInput.frame = CGRectMake(txtInput.frame.origin.x, txtInput.frame.origin.y, txtInput.frame.width,44)
     }
     
-    
-    @IBAction func btnActionTapped(sender: AnyObject) {
+    override func ButtonTap(tag: Int) {
         
         if (self.txtInput.text.length != 11) {
             return;
@@ -42,23 +36,11 @@ class FindPwdStep1: RootVC ,UIAlertViewDelegate{
         alert.addButtonWithTitle("确定")
         alert.delegate = self;
         alert.show()
-    }
-
-    //MARK alertView Delegate
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if(buttonIndex == 0)//cancel
-        {
-            
-        }
-        else
-        {
-            SVProgressHUD.showWithStatusWithBlack("验证码短信发送中...")
-            var strapiName = self.txtInput.text
-             self.httpGetApi("api/Login/sendSMS?mobile=\(strapiName)", tag: 11)
-        }
+        
+        
     }
     
-    //MARK WebRequestDelegate
+    
     override func requestDataComplete(response:AnyObject,tag:Int)
     {
         if(tag == 11)
@@ -70,15 +52,32 @@ class FindPwdStep1: RootVC ,UIAlertViewDelegate{
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func requestDataFailed(error:String)
+    {
+        SVProgressHUD.showErrorWithStatusWithBlack(error);
     }
-    */
-
+    
+    //MARK alertView Delegate
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if(buttonIndex == 0)//cancel
+        {
+            
+        }
+        else
+        {
+            SVProgressHUD.showWithStatusWithBlack("验证码短信发送中...")
+            
+            let parameters = ["mobile": self.txtInput.text ]
+            
+            
+            
+            self.httpGetApi(AppConfig.Url_SendSMS, body:parameters, tag: 11)
+            
+            
+        }
+    }
+    
+    
+    
+    
 }

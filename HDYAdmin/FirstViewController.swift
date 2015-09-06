@@ -10,7 +10,7 @@ import UIKit
 
 class FirstViewController: RootVC ,UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet var lbNickName: UILabel!
+    @IBOutlet var lbHDYName: UILabel!
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -28,7 +28,7 @@ class FirstViewController: RootVC ,UICollectionViewDataSource ,UICollectionViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.lbNickName.text = AppConfig.sharedAppConfig.NickName
+        self.lbHDYName.text = AppConfig.sharedAppConfig.HDYName
         self.title = "首页"
         
         self.collectionView.delegate = self

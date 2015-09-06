@@ -30,7 +30,6 @@ class LocationDetail: NSObject {
         self.LocationAddress=dict.objectForKey("LocationAddress") as! String
         self.Description=dict.objectForKey("Description") as? String
         self.Latitude=dict.objectForKey("Latitude") as! Double
-        
         self.Longitude=dict.objectForKey("Longitude") as! Double
         self.LocationLevel=dict.objectForKey("LocationLevel") as? Int
     }

@@ -11,24 +11,24 @@ import UIKit
 class RegisterVC: RootVC ,UIAlertViewDelegate {
     
     @IBOutlet weak var btnRegister: UIButton!
-
+    
     @IBOutlet weak var txtPhone: TextBoxView!
     @IBOutlet weak var txtControyID:TextBoxView!
     @IBOutlet weak var btnSelectCID: UIButton!
     var strKeyNote = "CountryCode"
     
     var strControyInfo = "+86中国";
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "注册"
         UIHelper.buildButtonFilletStyle(btnRegister, borderColor: UIHelper.mainColor)
         
-         txtControyID.enabled = false;
+        txtControyID.enabled = false;
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,15 +76,15 @@ class RegisterVC: RootVC ,UIAlertViewDelegate {
             
             
             //SVProgressHUD.showWithStatusWithBlack("请稍候...");
-            let parameters = self.txtPhone.text
+            let parameters = ["mobile": self.txtPhone.text ]
             
             
             
-            self.httpGetApi("api/Login/sendSMS?mobile=\(parameters)", tag: 11)
+            self.httpGetApi(AppConfig.Url_SendSMS, body:parameters, tag: 11)
             
-       }
+        }
         
-      }
+    }
     
     override func requestDataComplete(response:AnyObject,tag:Int)
     {
@@ -98,15 +98,15 @@ class RegisterVC: RootVC ,UIAlertViewDelegate {
             {
                 SVProgressHUD.showSuccessWithStatusWithBlack("验证码已发送成功");
                 var vc:RegisterStep2VC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "RegisterStep2VC") as! RegisterStep2VC
-               vc.strPhone = self.txtPhone.text.trim();
-               vc.countryID = 0;
+                vc.strPhone = self.txtPhone.text.trim();
+                vc.countryID = 0;
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }
         }
         
     }
-
+    
     
     
     

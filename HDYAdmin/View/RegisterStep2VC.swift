@@ -9,7 +9,7 @@
 import UIKit
 
 class RegisterStep2VC: RootVC,UIAlertViewDelegate {
-
+    
     @IBOutlet weak var txtPhone: UITextField!
     @IBOutlet weak var txtVerifyCode: UITextField!
     
@@ -24,12 +24,16 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
     var isFromChangMobile = false
     var strPhone:String!;
     var countryID:Int!;
-
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    
+    
+    override func RenderDetail() {
         btnResend.layer.cornerRadius = 6;
         btnResend.layer.masksToBounds=true
         btnResend.layer.borderWidth = 1;
@@ -38,19 +42,9 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
         btnNext.layer.masksToBounds=true
         btnNext.layer.borderWidth = 1;
         btnNext.layer.borderColor = UIHelper.mainColor.CGColor;
-
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         txtPhone.text = strPhone;
         txtPhone.enabled = false;
-        
-        
         self.startTimer()
-        
-        
     }
     
     func startTimer()
@@ -60,8 +54,8 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector:Selector("changeResendTime"), userInfo: nil, repeats: true)
         timer.fire()
     }
-
-
+    
+    
     func removeTimer()
     {
         btnResend.enabled = true
@@ -69,7 +63,7 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
         timer = nil;
         btnResend.setTitle("重新获取验证码", forState: UIControlState.Normal)
     }
-
+    
     
     func changeResendTime()
     {
@@ -88,24 +82,18 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
         }
         
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    
+    
     
     
     @IBAction func btnTapped(sender: AnyObject) {
         var tag = (sender as! UIButton).tag
         if(tag == 10)//重新发送验证码
         {
-            
             if (self.txtPhone.text.length != 11) {
                 return;
             }
-            
-            
             self.view.endEditing(true)
             var alert = UIAlertView()
             alert.title = "确认手机号码"
@@ -114,7 +102,7 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
             alert.addButtonWithTitle("确定")
             alert.delegate = self;
             alert.show()
-            
+            startTimer()
             
         }
         else if(tag == 11)//提交验证码
@@ -122,98 +110,109 @@ class RegisterStep2VC: RootVC,UIAlertViewDelegate {
             if(txtVerifyCode.text.trim().length>0)
             {
                 SVProgressHUD.showWithStatusWithBlack("请稍等...")
+                var parameters:[String : AnyObject]
                 
-                
-                let parameters = [
-                    "mp": self.txtPhone.text,
-                    "vcode":self.txtVerifyCode.text.trim()
-                ]
-                
+                if(!isFromChangMobile)
+                {
+                    parameters = [
+                        "mp": self.txtPhone.text,
+                        "vcode":self.txtVerifyCode.text.trim(),
+                        "type":AppConfig.IsUserVersion ? "PersonRegister":"OrgRegister"
+                    ]
+                    
+                    self.httpPostApi(AppConfig.Url_SMSVerify, body: parameters, tag: 11)
+                    return
+                }else{
+                    parameters = [
+                        "mp": self.txtPhone.text,
+                        "vcode":self.txtVerifyCode.text.trim()
+                    ]
+                }
                 self.httpPostApi(AppConfig.Url_SMSVerify, body: parameters, tag: 11)
-                
-                
-                
             }
-            
         }
-        
-        
     }
     
     override func requestDataComplete(response:AnyObject,tag:Int)
     {
-        
-        if (tag == 10) {
-            if (response is NSDictionary)
+        SVProgressHUD.dismiss()
+        if (tag == 11) {
+            
+            
+            SVProgressHUD.showSuccessWithStatusWithBlack("验证成功");
+            if(!isFromChangMobile)
             {
-               // var uid:String = response.objectForKey("token") as! String;
-                AppConfig.sharedAppConfig.AccessToken = response.objectForKey("token") as! String;
-                AppConfig.sharedAppConfig.Portrait =  response.objectForKey("Portrait") as! String;
-                AppConfig.sharedAppConfig.NickName =  response.objectForKey("NickName") as! String;
-                AppConfig.sharedAppConfig.save()
-                //登录后立马获取用户信息
-                //self.httpGetApi("profile/detail", tag: 11)
-            }else if(tag == 11)
-            {
-                SVProgressHUD.showSuccessWithStatusWithBlack("验证成功");
-                if(!isFromChangMobile)
+                if (!isFromFindPwd)
                 {
-                    SVProgressHUD.showSuccessWithStatusWithBlack("验证成功");
-                    var vc:RegisterStep3VC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "RegisterStep3VC") as! RegisterStep3VC
+                    var flag = response as! Bool
+                    if (!flag)
+                    {
+                        SVProgressHUD.showErrorWithStatusWithBlack("该手机号码已经注册");
+                        return;
+                    }
                     
-                    vc.strPhone = self.txtPhone.text.trim();
-                    vc.countryID = 0;
-                    vc.strVcode = self.txtVerifyCode.text
-                    vc.isFromFindPwd = self.isFromFindPwd
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                else
-                {
-                    
-                    
-                  let  body = [
-                        "NewPhoneNumber":txtPhone.text.trim(),
-                        "Vcode":txtVerifyCode.text.trim()
-                    ]
-                    
-                    
-                    
-                    self.httpPostApi("api/HuoDongService/mobilechange", body: body, tag: 98)
                 }
                 
+                var vc:RegisterStep3VC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "RegisterStep3VC") as! RegisterStep3VC
+                vc.strPhone = self.txtPhone.text.trim();
+                vc.countryID = 0;
+                vc.strVcode = self.txtVerifyCode.text
+                vc.isFromFindPwd = self.isFromFindPwd
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            else if(tag == 98)
+            else
             {
-                SVProgressHUD.showSuccessWithStatusWithBlack("手机号码修改成功");
-               // var vc = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "ProfileVC") as! ProfileVC
-               // self.navigationController?.popToViewController(vc, animated: true);
+                
+                
+                let  body = [
+                    "NewPhoneNumber":txtPhone.text.trim(),
+                    "Vcode":txtVerifyCode.text.trim()
+                ]
+                
+                
+                
+                self.httpPostApi("api/HuoDongService/mobilechange", body: body, tag: 98)
             }
-            else if(tag == 99)
-            {
-                SVProgressHUD.showSuccessWithStatusWithBlack("验证码已发送成功");
-                self.startTimer();
-            }
-
+            
+            
+            
+            
+            
+        }else if (tag == 12)
+        {
+            
+        }
+        else if(tag == 98)
+        {
+            SVProgressHUD.showSuccessWithStatusWithBlack("手机号码修改成功");
+            // var vc = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "ProfileVC") as! ProfileVC
+            // self.navigationController?.popToViewController(vc, animated: true);
+        }
+        else if(tag == 99)
+        {
+            SVProgressHUD.showSuccessWithStatusWithBlack("验证码已发送成功");
+            self.startTimer();
         }
         
         
         
         
-       
+        
+        
         
     }
-
     
     
-
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

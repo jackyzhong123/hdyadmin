@@ -19,6 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        if (AppConfig.sharedAppConfig.IsTest)
+            //if (true)
+        {
+            AppConfig.SERVICE_ROOT_PATH = "http://192.168.1.26:47897/"
+        }else
+        {
+            AppConfig.SERVICE_ROOT_PATH = "http://newhuodongyou.chinacloudsites.cn/"
+        }
+        
+        
+        
         
         if(AppConfig.sharedAppConfig.isUserLogin())
         {

@@ -1,14 +1,14 @@
-//
-//  RegisterStep3VC.swift
-//  HDYAdmin
-//
-//  Created by Sky on 15/9/1.
-//  Copyright (c) 2015年 HuoDongYou. All rights reserved.
-//
-
-import UIKit
-
-class RegisterStep3VC: RootVC {
+  //
+  //  RegisterStep3VC.swift
+  //  HDYAdmin
+  //
+  //  Created by Sky on 15/9/1.
+  //  Copyright (c) 2015年 HuoDongYou. All rights reserved.
+  //
+  
+  import UIKit
+  
+  class RegisterStep3VC: RootVC {
     
     @IBOutlet weak var btnDone: UIButton!
     @IBOutlet weak var txtConfrimPwd: UITextField!
@@ -19,29 +19,16 @@ class RegisterStep3VC: RootVC {
     var strVcode:String!;
     var isFromFindPwd = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "注册";
-        
+    }
+    
+    override func RenderDetail() {
         btnDone.layer.cornerRadius = 8;
         btnDone.layer.masksToBounds=true
         btnDone.layer.borderWidth = 1;
         btnDone.layer.borderColor = UIHelper.mainColor.CGColor;
         
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         if(isFromFindPwd)
         {
             self.title = "忘记密码";
@@ -50,7 +37,6 @@ class RegisterStep3VC: RootVC {
         {
             self.title = "注册";
         }
-        
         
         lbMsg.text = "";
     }
@@ -63,36 +49,25 @@ class RegisterStep3VC: RootVC {
             
             
             SVProgressHUD.showWithStatusWithBlack("请稍后...");
-            
             if(!isFromFindPwd)
             {
-                // var postBody:String = String(format: "{\"Birthday\":0,\"ClientName\":\"iPhone\",\"Gender\":0,\"MobilePhone\":\"%@\",\"Name\":\"%@\",\"Password\":\"%@\",\"Vcode\":\"%@\"}", strPhone,strPhone,txtPwd.text,strVcode)
-                
                 let parameters = [
                     "Mobile": strPhone,
                     "Password": txtPwd.text,
                     "Code":strVcode
                 ]
-                
-                self.httpPostApi(AppConfig.Url_OrgRegister, body: parameters, tag: 11)
-                
-                // self.httpObj.httpPostApi("api/Login/NewOrgRegister", parameters: parameters, tag: 10)
-                
-                
+                self.httpPostApi(AppConfig.Url_PersonRegister, body: parameters, tag: 11)
             }
             else
             {
                 let parameters = [
                     "Mobile": strPhone,
                     "Password": txtPwd.text,
-                    "Code":strVcode
+                    "Code":strVcode,
+                    "IsOrganization":!AppConfig.IsUserVersion
                 ]
-                
                 self.httpPostApi(AppConfig.Url_ResetPwd, body: parameters, tag: 12)
-                
-                
             }
-            
         }
         else
         {
@@ -113,64 +88,59 @@ class RegisterStep3VC: RootVC {
     override func requestDataComplete(response:AnyObject,tag:Int)
     {
         
-        if (response is NSDictionary)
+        
+        
+        if (tag == 11)
         {
             
             var jsonData=JSON(response)
+            AppConfig.sharedAppConfig.AccessToken = jsonData["token"].string!
+            AppConfig.sharedAppConfig.IsCreator  = true
+            AppConfig.sharedAppConfig.HDYName = jsonData["HDYName"].string!
+            AppConfig.sharedAppConfig.Portrait = jsonData["Portrait"].string!
+            AppConfig.sharedAppConfig.MySex = jsonData["MySex"].intValue
+            AppConfig.sharedAppConfig.save()
+            SVProgressHUD.showSuccessWithStatusWithBlack("登录成功");
             
-            if (tag == 11)
+            var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            self.view.window!.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController
+            
+            
+        }else if (tag == 12)
+        {
+            var result = response as! Int
+            if (result == 1)
             {
-                AppConfig.sharedAppConfig.AccessToken = jsonData["token"].string!
-                AppConfig.sharedAppConfig.IsCreator  = true
-                AppConfig.sharedAppConfig.NickName = jsonData["NickName"].string!
-                AppConfig.sharedAppConfig.Portrait = jsonData["Portrait"].string!
-                
-                
-                AppConfig.sharedAppConfig.save()
-                SVProgressHUD.showSuccessWithStatusWithBlack("登录成功");
-                
-                var storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                self.view.window!.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController
-                
-                
-                
-            }else if (tag == 12)
+                SVProgressHUD.showSuccessWithStatusWithBlack("设置成功");
+                var vc:LoginVC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "LoginVC") as! LoginVC
+                //  vc.isBackToHome = true;
+                self.view.window?.rootViewController = vc
+            }else if result == 2
             {
+                SVProgressHUD.showErrorWithStatusWithBlack("不存在该手机号");
                 
-                if (jsonData["code"] == 1)
-                {
-                    SVProgressHUD.showSuccessWithStatusWithBlack("设置成功");
-                    var vc:LoginVC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "LoginVC") as! LoginVC
-                    //  vc.isBackToHome = true;
-                    self.view.window?.rootViewController = vc
-                }else if jsonData["code"] == 2
-                {
-                    SVProgressHUD.showErrorWithStatusWithBlack("不存在该手机号");
-                    
-                }else if jsonData["code"] == 3
-                {
-                    SVProgressHUD.showErrorWithStatusWithBlack("修改失败");
-                }
-                
-                
-                
+            }else if result == 3
+            {
+                SVProgressHUD.showErrorWithStatusWithBlack("修改失败");
             }
             
             
             
-            
-            
-            
-            
         }
-        SVProgressHUD.showSuccessWithStatusWithBlack("验证成功");
-        var vc:RegisterStep3VC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "RegisterStep3VC") as! RegisterStep3VC
         
-        //        vc.strPhone = self.txtPhone.text.trim();
-        //        vc.countryID = 0;
-        //        vc.strVcode = self.txtVerifyCode.text
-        //        vc.isFromFindPwd = self.isFromFindPwd
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+        
+        
+        
+        //        SVProgressHUD.showSuccessWithStatusWithBlack("验证成功");
+        //        var vc:RegisterStep3VC = UIHelper.GetVCWithIDFromStoryBoard(.Account, viewControllerIdentity: "RegisterStep3VC") as! RegisterStep3VC
+        //
+        //        //        vc.strPhone = self.txtPhone.text.trim();
+        //        //        vc.countryID = 0;
+        //        //        vc.strVcode = self.txtVerifyCode.text
+        //        //        vc.isFromFindPwd = self.isFromFindPwd
+        //        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -186,4 +156,4 @@ class RegisterStep3VC: RootVC {
     }
     */
     
-}
+  }

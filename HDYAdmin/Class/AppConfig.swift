@@ -14,16 +14,23 @@ import UIKit
 
 class AppConfig: NSObject {
     
+    //对个人版本和组织号版本，各不一样
+    static var  IsUserVersion  = false
+    
+    
     ////////////////////////////访问字符串
     //MARK: 一些基本的配置
-    static let SERVICE_ROOT_PATH = "http://192.168.1.26:47897/"
+    static var SERVICE_ROOT_PATH = "http://192.168.1.26:47897/"
     
     //MARK: 访问服务地址的配置
     //手机号登录
-    static var  Url_NewOrgLogin = "api/Login/NewOrgLogin"
+    static var  Url_NewOrgLogin = "api/Login/OrgLogin"
+    
+    //发送短信
+    static var Url_SendSMS = "api/General/SendSMS"
     
     //获得用户档案
-    static var Url_getProfile="api/HuoDongService/getProfile"
+    static var Url_getProfile="api/Login/getProfile"
     
     //上传头像
     static var Url_uploadImage="api/HdyUploadImageByUser"
@@ -41,10 +48,10 @@ class AppConfig: NSObject {
     static var Url_getMyLocationList="api/HuoDongService/getPlaceList"
     
     //短信验证
-    static var Url_SMSVerify = "api/Login/SMSVerify"
+    static var Url_SMSVerify = "api/General/SMSVerify"
     
     //组织注册
-    static var Url_OrgRegister = "api/Login/NewOrgRegister"
+    static var Url_OrgRegister = "api/Login/OrgRegister"
     
     //重置密码
     static var Url_ResetPwd = "api/Login/Reset"
@@ -53,13 +60,41 @@ class AppConfig: NSObject {
     static var Url_MyLocationList = "api/HuoDongService/getPlaceList"
     
     //新增活动
-    static var Url_AddActivity = "api/HuoDongService/AddActivity"
+    static var Url_AddActivity = "api/Activity/Create"
     
+    static var Url_MyActivityList = "api/Activity/MyActivityList"
+    
+    static var Url_PersonRegister = "api/Login/PersonRegister"
+    
+    static var Url_PersonLogin = "api/Login/PersonLogin"
+    
+    static var Url_ChangeRealName = "api/Login/ChangeRealName"
+    
+    static var Url_ChangeSex = "api/Login/ChangeSex"
+    
+    static var Url_ChangeHDYName = "api/Login/ChangeHDYName"
+    
+    static var Url_ActivityList = "api/Activity/ActivityList"
+    
+    static var Url_LocationList = "api/Activity/LocationList"
+    
+    static var Url_AlbumList = "api/Activity/AlbumList"
+    
+    static var Url_PersonList = "api/Contact/PersonList"
+    
+    static var Url_OrgList = "api/Contact/OrgList"
+    
+    static var Url_MyFollwerAndLocation = "api/Contact/MyFollowingAndLocation"
+    
+    static var Url_MakeFavLocation = "api/Contact/MakeFavLocation"
+    
+    static var Url_MakeFollow = "api/Contact/MakeFollow"
     
     
     ////////////////////////////=== Notification
     static var NF_SelectAlbum = "SelectAlbum"
     static var NF_SelectLocation = "SelectLocation"
+    static var NF_ChangeUerProfile = "ChangeUerProfile"
     
     
     
@@ -75,7 +110,7 @@ class AppConfig: NSObject {
         return NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)!
         
         
-     
+        
     }
     
     // NSDictionary -> NSData
@@ -87,11 +122,6 @@ class AppConfig: NSObject {
     }
     
     
-//    static func C_D(dataObj:NSData) -> NSArray
-//    {
-//        var data:Array = NSJSONSerialization.JSONObjectWithData(dataObj, options: NSJSONReadingOptions.AllowFragments, error: nil)
-//        return data;
-//    }
     
     
     
@@ -111,8 +141,12 @@ class AppConfig: NSObject {
     //MARK: 一些变量
     var AccessToken:String = ""
     var IsCreator = false
-    var NickName = ""
+    var HDYName = ""
     var Portrait = ""
+    var RealName = ""
+    var IsTest = false
+    var MySex:Int?
+    
     //MARK: 一些函数
     func isUserLogin()->Bool
     {
@@ -130,10 +164,13 @@ class AppConfig: NSObject {
         var varData = data as! NSData;
         let dataDir:NSDictionary =  NSJSONSerialization.JSONObjectWithData(varData, options: NSJSONReadingOptions.AllowFragments, error: nil) as! NSDictionary
         
-        AppConfig.sharedAppConfig.NickName = dataDir.objectForKey("Name") as! String
+        AppConfig.sharedAppConfig.HDYName = dataDir.objectForKey("HDYName") as! String
         AppConfig.sharedAppConfig.Portrait = dataDir.objectForKey("Portrait") as! String
+        AppConfig.sharedAppConfig.RealName = dataDir.objectForKey("RealName") as! String
+        AppConfig.sharedAppConfig.IsTest = dataDir.objectForKey("IsTest") as! Bool
+        AppConfig.sharedAppConfig.MySex = dataDir.objectForKey("MySex") as! Int
         AppConfig.sharedAppConfig.save()
-    NSNotificationCenter.defaultCenter().postNotificationName("ReloadUserInfo_Notiication", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("ReloadUserInfo_Notiication", object: nil)
     }
     
     
@@ -157,7 +194,19 @@ class AppConfig: NSObject {
             ud.removeObjectForKey("Configuration_Token")
         }
         
+        
+        if(self.MySex != nil)
+        {
+            ud.setInteger(MySex!, forKey: "Configuration_MySex")
+        }
+        else
+        {
+            ud.removeObjectForKey("Configuration_MySex")
+        }
+        
+        
         ud.setBool(IsCreator, forKey: "Configuration_CurrentIsCreator")
+        ud.setBool(IsTest, forKey: "Configuration_CurrentIsTest")
         
         if(!self.Portrait.isNullOrEmpty())
         {
@@ -168,16 +217,24 @@ class AppConfig: NSObject {
             ud.removeObjectForKey("Configuration_Portrait")
         }
         
-        if(!self.NickName.isNullOrEmpty())
+        if(!self.HDYName.isNullOrEmpty())
         {
-            ud.setObject(self.NickName, forKey: "Configuration_NickName")
+            ud.setObject(self.HDYName, forKey: "Configuration_HDYName")
         }
         else
         {
-            ud.removeObjectForKey("Configuration_NickName")
+            ud.removeObjectForKey("Configuration_HDYName")
         }
         
-        
+        if(!self.RealName.isNullOrEmpty())
+        {
+            ud.setObject(self.RealName, forKey: "Configuration_RealName")
+        }
+        else
+        {
+            ud.removeObjectForKey("Configuration_RealName")
+        }
+        ud.synchronize()
         
         return true
     }
@@ -200,20 +257,36 @@ class AppConfig: NSObject {
         {
             self.AccessToken = ud.objectForKey("Configuration_Token") as! String;
         }
-      
-        if(ud.objectForKey("Configuration_NickName") != nil)
+        
+        if(ud.objectForKey("Configuration_HDYName") != nil)
         {
-            self.NickName = ud.objectForKey("Configuration_NickName") as! String;
+            self.HDYName = ud.objectForKey("Configuration_HDYName") as! String;
         }
+        if(ud.objectForKey("Configuration_RealName") != nil)
+        {
+            self.RealName = ud.objectForKey("Configuration_RealName") as! String;
+        }
+        
         if(ud.objectForKey("Configuration_Portrait") != nil)
         {
             self.Portrait = ud.objectForKey("Configuration_Portrait") as! String;
         }
         
-        if(ud.boolForKey("Configuration_CurrentIsCreator"))
+        if(ud.objectForKey("Configuration_CurrentIsTest") != nil)
         {
             self.IsCreator = ud.boolForKey("Configuration_CurrentIsCreator")
         }
+        
+        if(ud.objectForKey("Configuration_CurrentIsTest") != nil)
+        {
+            self.IsTest = ud.boolForKey("Configuration_CurrentIsTest")
+        }
+        
+        if(ud.objectForKey("Configuration_MySex") != nil)
+        {
+            self.MySex = ud.integerForKey("Configuration_MySex")
+        }
+        
     }
     
     

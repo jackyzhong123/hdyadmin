@@ -81,7 +81,7 @@ class MyAlbumListVC:  RootVC,UICollectionViewDelegate,UICollectionViewDataSource
         mycell.imageView!.sd_setImageWithURL(NSURL(string: obj.AlbumIcon)!, placeholderImage: UIImage(named: "placeholder.png"))
         
         
-        mycell.AlbumId=obj.Albumid
+        mycell.AlbumId=obj.AlbumId
         
         
         return mycell

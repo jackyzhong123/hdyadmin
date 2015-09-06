@@ -11,7 +11,7 @@ import UIKit
 class AlbumDetail: NSObject {
     
     var AlbumIcon:String!
-    var Albumid:String!
+    var AlbumId:String!
     var AlbumName:String!
     
     init(dict:NSDictionary) {
@@ -22,7 +22,7 @@ class AlbumDetail: NSObject {
     func OrderDetail(dict:NSDictionary)
     {
         self.AlbumIcon=dict.objectForKey("AlbumIcon") as! String
-        self.Albumid=dict.objectForKey("AlbumId") as! String
+        self.AlbumId=dict.objectForKey("AlbumId") as! String
         self.AlbumName=dict.objectForKey("AlbumName") as! String
     }
 }

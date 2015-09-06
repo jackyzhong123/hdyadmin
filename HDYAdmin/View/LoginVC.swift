@@ -66,7 +66,7 @@ class LoginVC: RootVC  {
             
             
             let postBody=[
-                "NickName": self.txtUID.text,
+                "HDYName": self.txtUID.text,
                 "Password": self.txtPWD.text,
                 "Device":"iPhone"
             ]
@@ -97,7 +97,7 @@ class LoginVC: RootVC  {
                 
                 AppConfig.sharedAppConfig.AccessToken = jsonData["token"].string!
                 AppConfig.sharedAppConfig.IsCreator  = jsonData["IsCreator"].boolValue
-                AppConfig.sharedAppConfig.NickName = jsonData["NickName"].string!
+                AppConfig.sharedAppConfig.HDYName = jsonData["HDYName"].string!
                 AppConfig.sharedAppConfig.Portrait = jsonData["Portrait"].string!
                 
                 
