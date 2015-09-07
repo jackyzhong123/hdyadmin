@@ -188,6 +188,9 @@ class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePi
         {
             var customCell:NALabel_Text_IconCell =  tableView.dequeueReusableCellWithIdentifier("NALabel_Text_IconCell") as! NALabel_Text_IconCell
             // customCell.imgCover
+            
+            customCell.myText.enabled = false
+            
             customCell.title.text = "系列活动"
             
             

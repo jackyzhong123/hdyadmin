@@ -566,7 +566,7 @@
         <!--New ActivityVC-->
         <scene sceneID="3mY-0o-3qg">
             <objects>
-                <viewController storyboardIdentifier="NewActivityVC" id="JyY-RP-lJh" customClass="NewActivityVC" customModule="HDYAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewActivityVC" hidesBottomBarWhenPushed="YES" id="JyY-RP-lJh" customClass="NewActivityVC" customModule="HDYAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TgN-6z-egz"/>
                         <viewControllerLayoutGuide type="bottom" id="GW6-sa-3iy"/>
