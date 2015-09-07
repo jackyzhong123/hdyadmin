@@ -23,6 +23,8 @@
 		1B5C7AEB1B94D05400587076 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5C7AEA1B94D05400587076 /* Images.xcassets */; };
 		1BB0B2031B9CB70D00FD411F /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0B2021B9CB70C00FD411F /* Dictionary.swift */; };
 		1BB0B2051B9CB73400FD411F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0B2041B9CB73400FD411F /* String.swift */; };
+		1BB0B2071B9D152200FD411F /* NewActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0B2061B9D152200FD411F /* NewActivityVC.swift */; };
+		1BB0B2091B9D15C900FD411F /* NewActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0B2081B9D15C900FD411F /* NewActivityCell.swift */; };
 		331763CE1B952CE6004471FF /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 331763CA1B952CE6004471FF /* SVIndefiniteAnimatedView.m */; };
 		331763CF1B952CE6004471FF /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 331763CB1B952CE6004471FF /* SVProgressHUD.bundle */; };
 		331763D01B952CE6004471FF /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 331763CD1B952CE6004471FF /* SVProgressHUD.m */; };
@@ -114,6 +116,8 @@
 		1B5C7AEA1B94D05400587076 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1BB0B2021B9CB70C00FD411F /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1BB0B2041B9CB73400FD411F /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		1BB0B2061B9D152200FD411F /* NewActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewActivityVC.swift; path = View/NewActivityVC.swift; sourceTree = "<group>"; };
+		1BB0B2081B9D15C900FD411F /* NewActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewActivityCell.swift; path = View/NewActivityCell.swift; sourceTree = "<group>"; };
 		331763C91B952CE6004471FF /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		331763CA1B952CE6004471FF /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		331763CB1B952CE6004471FF /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 			isa = PBXGroup;
 			children = (
 				33615E071B96E3F40046750F /* AddActivityVC.swift */,
+				1BB0B2061B9D152200FD411F /* NewActivityVC.swift */,
+				1BB0B2081B9D15C900FD411F /* NewActivityCell.swift */,
 			);
 			name = HomeActivity;
 			sourceTree = "<group>";
@@ -645,6 +651,7 @@
 				331764131B9535C3004471FF /* AFURLConnectionOperation.m in Sources */,
 				331764201B9535C3004471FF /* UIButton+WebCache.m in Sources */,
 				1B5C7ACF1B94B4A100587076 /* AppConfig.swift in Sources */,
+				1BB0B2071B9D152200FD411F /* NewActivityVC.swift in Sources */,
 				331764221B9535C3004471FF /* UIImage+MultiFormat.m in Sources */,
 				1B5C7AE31B94C0CC00587076 /* LoginVC.swift in Sources */,
 				3317643E1B95C260004471FF /* FindPwdStep1.swift in Sources */,
@@ -663,6 +670,7 @@
 				33615E191B9994480046750F /* MeHeaderCell.swift in Sources */,
 				331764251B9535C3004471FF /* UIImageView+WebCache.m in Sources */,
 				331763D31B952D19004471FF /* WaitChangeFun.m in Sources */,
+				1BB0B2091B9D15C900FD411F /* NewActivityCell.swift in Sources */,
 				33A2717F1B96BB3200800A92 /* ViewSampleVC.swift in Sources */,
 				331764101B9535C3004471FF /* AFHTTPSessionManager.m in Sources */,
 				331764181B9535C3004471FF /* NSData+ImageContentType.m in Sources */,

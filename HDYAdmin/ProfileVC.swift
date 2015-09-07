@@ -198,9 +198,6 @@ class ProfileVC: RootVC ,UITableViewDelegate,UITableViewDataSource ,UIImagePicke
                 break;
             }
             
-            
-            
-            //  cell.imageView?.image = UIImage(named: iconArr[indexPath.row])
             return cell
             
         }else if(indexPath.section == 2 )
@@ -214,7 +211,6 @@ class ProfileVC: RootVC ,UITableViewDelegate,UITableViewDataSource ,UIImagePicke
             
             var v = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, cell.frame.height));
             var label = UILabel(frame: v.frame);
-            
             
             
             if (AppConfig.sharedAppConfig.IsTest)
