@@ -11,9 +11,7 @@ import UIKit
 class FirstViewController: RootVC ,UICollectionViewDataSource ,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var lbHDYName: UILabel!
-    
     @IBOutlet var collectionView: UICollectionView!
-    
     
     let myConfig=[
         ["name":"创建活动","targetVC":"NewActivityVC"],
@@ -25,8 +23,7 @@ class FirstViewController: RootVC ,UICollectionViewDataSource ,UICollectionViewD
     ]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        super.viewDidLoad() 
         
         self.lbHDYName.text = AppConfig.sharedAppConfig.HDYName
         self.title = "首页"
@@ -68,25 +65,19 @@ class FirstViewController: RootVC ,UICollectionViewDataSource ,UICollectionViewD
         return CGSizeMake(rx.width/3 - 1, rx.width/3 - 1)
     }
     
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        
         
         
         
         var index = indexPath.row;
         var photoItem:NSDictionary! = myConfig[index] as NSDictionary
         var vc:UIViewController  = UIHelper.GetVCWithIDFromStoryBoard(.Main, viewControllerIdentity: photoItem["targetVC"] as! String)
-        //  self.presentViewController(vc, animated: true, completion: nil)
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
 
-    
-    
-    
-    
-
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

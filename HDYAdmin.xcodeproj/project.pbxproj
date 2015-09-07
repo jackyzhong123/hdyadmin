@@ -72,6 +72,10 @@
 		331764501B95E296004471FF /* MyLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3317644F1B95E296004471FF /* MyLocationVC.swift */; };
 		331764521B95E359004471FF /* LocationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331764511B95E359004471FF /* LocationDetail.swift */; };
 		331764541B95E82B004471FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331764531B95E82B004471FF /* TableViewController.swift */; };
+		331BDD151B9D3BFC005F20F2 /* AddNewPlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331BDD141B9D3BFC005F20F2 /* AddNewPlaceVC.swift */; };
+		331BDD171B9D40BD005F20F2 /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331BDD161B9D40BD005F20F2 /* MapLocation.swift */; };
+		331BDD1D1B9D69CD005F20F2 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 331BDD1A1B9D69CD005F20F2 /* MGSwipeButton.m */; };
+		331BDD1E1B9D69CD005F20F2 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 331BDD1C1B9D69CD005F20F2 /* MGSwipeTableCell.m */; };
 		33615E081B96E3F40046750F /* AddActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33615E071B96E3F40046750F /* AddActivityVC.swift */; };
 		33615E191B9994480046750F /* MeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33615E181B9994480046750F /* MeHeaderCell.swift */; };
 		33615E1B1B9995C80046750F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33615E1A1B9995C80046750F /* ProfileVC.swift */; };
@@ -196,6 +200,12 @@
 		3317644F1B95E296004471FF /* MyLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyLocationVC.swift; path = View/MyLocationVC.swift; sourceTree = "<group>"; };
 		331764511B95E359004471FF /* LocationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationDetail.swift; path = DataModel/LocationDetail.swift; sourceTree = "<group>"; };
 		331764531B95E82B004471FF /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		331BDD141B9D3BFC005F20F2 /* AddNewPlaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewPlaceVC.swift; path = View/AddNewPlaceVC.swift; sourceTree = "<group>"; };
+		331BDD161B9D40BD005F20F2 /* MapLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapLocation.swift; path = DataModel/MapLocation.swift; sourceTree = "<group>"; };
+		331BDD191B9D69CD005F20F2 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		331BDD1A1B9D69CD005F20F2 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		331BDD1B1B9D69CD005F20F2 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		331BDD1C1B9D69CD005F20F2 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 		33615E071B96E3F40046750F /* AddActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddActivityVC.swift; path = View/AddActivityVC.swift; sourceTree = "<group>"; };
 		33615E181B9994480046750F /* MeHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeHeaderCell.swift; sourceTree = "<group>"; };
 		33615E1A1B9995C80046750F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -297,6 +307,7 @@
 				331764511B95E359004471FF /* LocationDetail.swift */,
 				331764481B95DC64004471FF /* AlbumDetail.swift */,
 				33A271801B96C57600800A92 /* MapPin.swift */,
+				331BDD161B9D40BD005F20F2 /* MapLocation.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -304,6 +315,7 @@
 		1B5C7AC41B94B15900587076 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				331BDD181B9D69CD005F20F2 /* MGSwipeTableCell */,
 				331763D81B9535C3004471FF /* AFNetworking */,
 				331763EC1B9535C3004471FF /* SDWebImage */,
 				331763D11B952D19004471FF /* WaitChangeFun.h */,
@@ -494,6 +506,18 @@
 			name = Location;
 			sourceTree = "<group>";
 		};
+		331BDD181B9D69CD005F20F2 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				331BDD191B9D69CD005F20F2 /* MGSwipeButton.h */,
+				331BDD1A1B9D69CD005F20F2 /* MGSwipeButton.m */,
+				331BDD1B1B9D69CD005F20F2 /* MGSwipeTableCell.h */,
+				331BDD1C1B9D69CD005F20F2 /* MGSwipeTableCell.m */,
+			);
+			name = MGSwipeTableCell;
+			path = Library/MGSwipeTableCell;
+			sourceTree = "<group>";
+		};
 		33615E061B96E3B70046750F /* HomeActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +541,7 @@
 			children = (
 				3317644F1B95E296004471FF /* MyLocationVC.swift */,
 				33A271741B9680A800800A92 /* MyLocationCell.swift */,
+				331BDD141B9D3BFC005F20F2 /* AddNewPlaceVC.swift */,
 			);
 			name = MyLocation;
 			sourceTree = "<group>";
@@ -588,6 +613,7 @@
 				TargetAttributes = {
 					1B5C7A9B1B94B07B00587076 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = H677DXW325;
 					};
 					1B5C7AB21B94B07C00587076 = {
 						CreatedOnToolsVersion = 6.4;
@@ -664,9 +690,11 @@
 				33A2717D1B96BB0000800A92 /* LocationDetailVC.swift in Sources */,
 				3317643A1B95968C004471FF /* RegisterStep2VC.swift in Sources */,
 				3317642E1B9552BD004471FF /* MeVC.swift in Sources */,
+				331BDD171B9D40BD005F20F2 /* MapLocation.swift in Sources */,
 				331764141B9535C3004471FF /* AFURLRequestSerialization.m in Sources */,
 				33615E1E1B9996C80046750F /* ChangeRealNameVC.swift in Sources */,
 				331764491B95DC64004471FF /* AlbumDetail.swift in Sources */,
+				331BDD1E1B9D69CD005F20F2 /* MGSwipeTableCell.m in Sources */,
 				33615E191B9994480046750F /* MeHeaderCell.swift in Sources */,
 				331764251B9535C3004471FF /* UIImageView+WebCache.m in Sources */,
 				331763D31B952D19004471FF /* WaitChangeFun.m in Sources */,
@@ -677,6 +705,7 @@
 				3317641C1B9535C3004471FF /* SDWebImageDownloader.m in Sources */,
 				3317640E1B9535C3004471FF /* AFHTTPRequestOperation.m in Sources */,
 				33615E1B1B9995C80046750F /* ProfileVC.swift in Sources */,
+				331BDD1D1B9D69CD005F20F2 /* MGSwipeButton.m in Sources */,
 				331763D01B952CE6004471FF /* SVProgressHUD.m in Sources */,
 				331764541B95E82B004471FF /* TableViewController.swift in Sources */,
 				33A271811B96C57600800A92 /* MapPin.swift in Sources */,
@@ -686,6 +715,7 @@
 				331764111B9535C3004471FF /* AFNetworkReachabilityManager.m in Sources */,
 				3317643C1B959B63004471FF /* RegisterStep3VC.swift in Sources */,
 				331764301B9565F3004471FF /* HeadAreaCell.swift in Sources */,
+				331BDD151B9D3BFC005F20F2 /* AddNewPlaceVC.swift in Sources */,
 				331764161B9535C3004471FF /* AFURLSessionManager.m in Sources */,
 				331764261B9535C3004471FF /* UIView+WebCacheOperation.m in Sources */,
 				3317641A1B9535C3004471FF /* SDWebImageCompat.m in Sources */,
@@ -839,6 +869,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HDYAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -850,6 +881,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = HDYAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

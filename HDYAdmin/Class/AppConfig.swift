@@ -17,6 +17,8 @@ class AppConfig: NSObject {
     //对个人版本和组织号版本，各不一样
     static var  IsUserVersion  = false
     
+    static var  Url_DefaultImg = "http://hdy.awblob.com/protrait/default"
+    
     
     ////////////////////////////访问字符串
     //MARK: 一些基本的配置
@@ -62,6 +64,10 @@ class AppConfig: NSObject {
     //新增活动
     static var Url_AddActivity = "api/Activity/Create"
     
+    //增加新的地点
+    static var Url_AddNewLocation = "api/HuoDongService/AddNewLocation"
+    
+    
     static var Url_MyActivityList = "api/Activity/MyActivityList"
     
     static var Url_PersonRegister = "api/Login/PersonRegister"
@@ -89,6 +95,8 @@ class AppConfig: NSObject {
     static var Url_MakeFavLocation = "api/Contact/MakeFavLocation"
     
     static var Url_MakeFollow = "api/Contact/MakeFollow"
+    
+    static var Url_DeleteLocation = "api/Activity/DeleteLocation"
     
     
     ////////////////////////////=== Notification

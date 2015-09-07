@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource {
+class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource ,MGSwipeTableCellDelegate{
     
     
     //MARK: 页面变量
@@ -20,11 +20,29 @@ class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource {
     //MARK: 页面生存周期
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+    }
+    
+    override func RenderDetail() {
         self.title="地点列表";
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.httpPostApi(AppConfig.Url_MyLocationList, body: nil, tag: 11)
+        UIHelper.SetNaviBarRightItemWithName(self, action: "toggleRightMenu:", strName: "新增")
     }
+    
+    func toggleRightMenu(sender:AnyObject)
+    {
+       
+        
+        var vc:UIViewController  = UIHelper.GetVCWithIDFromStoryBoard(.Main, viewControllerIdentity: "AddNewPlaceVC")
+      
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+        
+    }
+    
     
     //MARK: 按钮点击事件
     override func ButtonTap(tag: Int) {
@@ -46,6 +64,9 @@ class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource {
             }
             self.tableView.reloadData()
             
+        }else if (tag == 12)
+        {
+           self.httpPostApi(AppConfig.Url_MyLocationList, body: nil, tag: 11)
         }
         
         
@@ -76,9 +97,37 @@ class MyLocationVC: RootVC ,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell =  tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
+       
+        
+        var cell:MGSwipeTableCell =  tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MGSwipeTableCell
+        var obj = listData[indexPath.row]
+        
         cell.textLabel?.text = listData [indexPath.row].LocationName
+        
+       // cell.imageView!.sd_setImageWithURL(NSURL(string:obj.Portrait)!, placeholderImage: UIImage(named: "placeholder.png"))
+        cell.imageView?.image =  UIImage(named: "setting_placeSearch")
+        cell.tag = indexPath.row
+        cell.detailTextLabel?.text = obj.LocationAddress
+        
+        cell.rightButtons = [MGSwipeButton(title: "删除", backgroundColor: UIColor.grayColor())]
+        
+        cell.rightSwipeSettings.transition = MGSwipeTransition.Rotate3D;
+        cell.delegate = self;
+        
+        
+    
         return cell;
+    }
+    
+    func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+        // println("\(cell.textLabel?.text)")
+        let parameter = [
+            "LocationId" : listData[cell.tag].Id
+            
+        ]
+        
+        self.httpGetApi(AppConfig.Url_DeleteLocation, body: parameter, tag: 12)
+        return true
     }
     
     

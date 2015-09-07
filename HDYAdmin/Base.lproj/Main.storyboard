@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -109,10 +109,70 @@
             </objects>
             <point key="canvasLocation" x="1562" y="-320"/>
         </scene>
+        <!--Add New PlaceVC-->
+        <scene sceneID="1gJ-Z2-giV">
+            <objects>
+                <viewController storyboardIdentifier="AddNewPlaceVC" id="lKn-TP-8fh" customClass="AddNewPlaceVC" customModule="HDYAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3sD-xD-kWJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="fH5-SF-b5G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="foR-M1-IEf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入地点名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G8r-iD-Xrs">
+                                <rect key="frame" x="16" y="38" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytr-yZ-oL4">
+                                <rect key="frame" x="16" y="76" width="512" height="62"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="mXr-8l-HxQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nhj-7m-mOL">
+                                <rect key="frame" x="16" y="146" width="240" height="128"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnB-EV-aip">
+                                <rect key="frame" x="536" y="76" width="48" height="62"/>
+                                <state key="normal" title="查询">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnPageTapped:" destination="lKn-TP-8fh" eventType="touchUpInside" id="Vz7-w5-8km"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nhj-7m-mOL" firstAttribute="top" secondItem="ytr-yZ-oL4" secondAttribute="bottom" constant="8" id="2tz-42-pXS"/>
+                            <constraint firstItem="ytr-yZ-oL4" firstAttribute="leading" secondItem="foR-M1-IEf" secondAttribute="leadingMargin" id="8Sw-Ne-YzS"/>
+                            <constraint firstItem="ytr-yZ-oL4" firstAttribute="trailing" secondItem="foR-M1-IEf" secondAttribute="trailingMargin" id="OW6-4P-04Y"/>
+                            <constraint firstItem="fH5-SF-b5G" firstAttribute="top" secondItem="nhj-7m-mOL" secondAttribute="bottom" id="T3q-5G-FCQ"/>
+                            <constraint firstItem="ytr-yZ-oL4" firstAttribute="top" secondItem="G8r-iD-Xrs" secondAttribute="bottom" constant="8" id="UvY-Pc-YNH"/>
+                            <constraint firstItem="nhj-7m-mOL" firstAttribute="leading" secondItem="foR-M1-IEf" secondAttribute="leadingMargin" id="jDG-Iu-0Tp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nhj-7m-mOL" secondAttribute="trailing" id="lrN-6q-DWi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="LocationAddress" destination="ytr-yZ-oL4" id="DBC-Jl-hct"/>
+                        <outlet property="mapView" destination="nhj-7m-mOL" id="eci-ob-Nen"/>
+                        <outlet property="txtPlaceName" destination="G8r-iD-Xrs" id="EQM-gk-DRO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FDB-Ty-DfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3148" y="-28"/>
+        </scene>
         <!--My LocationVC-->
         <scene sceneID="SyM-Ep-eVp">
             <objects>
-                <viewController storyboardIdentifier="MyLocationVC" id="3j7-NR-Iwi" customClass="MyLocationVC" customModule="HDYAdmin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyLocationVC" hidesBottomBarWhenPushed="YES" id="3j7-NR-Iwi" customClass="MyLocationVC" customModule="HDYAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3ul-vE-Ndz"/>
                         <viewControllerLayoutGuide type="bottom" id="2DH-gi-mw4"/>
@@ -125,7 +185,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="LI3-vC-x1T">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="LI3-vC-x1T" customClass="MGSwipeTableCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LI3-vC-x1T" id="vex-qd-Sou">

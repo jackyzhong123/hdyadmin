@@ -19,7 +19,7 @@ class AddNewAlbumVC: RootVC ,UIImagePickerControllerDelegate,UINavigationControl
             var dic = NSMutableDictionary(object: self.txtName!.text, forKey: "AlbumName")
             if(self.imageCover.sd_imageURL()==nil)
             {
-                dic.setValue("http://hdy.awblob.com/protrait/default", forKey: "ImageUrl")
+                dic.setValue(AppConfig.Url_DefaultImg, forKey: "ImageUrl")
             }else
             {
                 dic.setValue(self.imageCover!.sd_imageURL().absoluteString, forKey: "ImageUrl")
