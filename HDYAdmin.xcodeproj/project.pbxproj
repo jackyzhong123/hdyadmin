@@ -11,6 +11,8 @@
 		1B5900641B9DB3B500E916A3 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = 1B5900631B9DB3B500E916A3 /* editor.html */; };
 		1B5900691B9DE35F00E916A3 /* SelectTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5900681B9DE35F00E916A3 /* SelectTimeVC.swift */; };
 		1B59006B1B9E5DB900E916A3 /* TimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B59006A1B9E5DB900E916A3 /* TimeModel.swift */; };
+		1B59006D1B9E65C600E916A3 /* MyActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B59006C1B9E65C600E916A3 /* MyActivityVC.swift */; };
+		1B59006F1B9E663500E916A3 /* ActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B59006E1B9E663500E916A3 /* ActivityDetail.swift */; };
 		1B5C7AA21B94B07C00587076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5C7AA11B94B07C00587076 /* AppDelegate.swift */; };
 		1B5C7AA41B94B07C00587076 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5C7AA31B94B07C00587076 /* FirstViewController.swift */; };
 		1B5C7AA61B94B07C00587076 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5C7AA51B94B07C00587076 /* SecondViewController.swift */; };
@@ -108,6 +110,8 @@
 		1B5900631B9DB3B500E916A3 /* editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = editor.html; sourceTree = "<group>"; };
 		1B5900681B9DE35F00E916A3 /* SelectTimeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectTimeVC.swift; path = View/SelectTimeVC.swift; sourceTree = "<group>"; };
 		1B59006A1B9E5DB900E916A3 /* TimeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeModel.swift; path = DataModel/TimeModel.swift; sourceTree = "<group>"; };
+		1B59006C1B9E65C600E916A3 /* MyActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyActivityVC.swift; path = View/MyActivityVC.swift; sourceTree = "<group>"; };
+		1B59006E1B9E663500E916A3 /* ActivityDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetail.swift; sourceTree = "<group>"; };
 		1B5C7A9C1B94B07C00587076 /* HDYAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HDYAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5C7AA01B94B07C00587076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B5C7AA11B94B07C00587076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 		1B5C7AC31B94B14700587076 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				1B59006E1B9E663500E916A3 /* ActivityDetail.swift */,
 				331764511B95E359004471FF /* LocationDetail.swift */,
 				331764481B95DC64004471FF /* AlbumDetail.swift */,
 				33A271801B96C57600800A92 /* MapPin.swift */,
@@ -536,6 +541,7 @@
 				1BB0B2061B9D152200FD411F /* NewActivityVC.swift */,
 				1BB0B2081B9D15C900FD411F /* NewActivityCell.swift */,
 				1B5900681B9DE35F00E916A3 /* SelectTimeVC.swift */,
+				1B59006C1B9E65C600E916A3 /* MyActivityVC.swift */,
 			);
 			name = HomeActivity;
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 				331764101B9535C3004471FF /* AFHTTPSessionManager.m in Sources */,
 				331764181B9535C3004471FF /* NSData+ImageContentType.m in Sources */,
 				3317641C1B9535C3004471FF /* SDWebImageDownloader.m in Sources */,
+				1B59006F1B9E663500E916A3 /* ActivityDetail.swift in Sources */,
 				3317640E1B9535C3004471FF /* AFHTTPRequestOperation.m in Sources */,
 				33615E1B1B9995C80046750F /* ProfileVC.swift in Sources */,
 				331BDD1D1B9D69CD005F20F2 /* MGSwipeButton.m in Sources */,
@@ -743,6 +750,7 @@
 				3317641F1B9535C3004471FF /* SDWebImagePrefetcher.m in Sources */,
 				3317644D1B95E095004471FF /* AddNewAlbumVC.swift in Sources */,
 				331763CE1B952CE6004471FF /* SVIndefiniteAnimatedView.m in Sources */,
+				1B59006D1B9E65C600E916A3 /* MyActivityVC.swift in Sources */,
 				3317641D1B9535C3004471FF /* SDWebImageDownloaderOperation.m in Sources */,
 				331764151B9535C3004471FF /* AFURLResponseSerialization.m in Sources */,
 				33615E1F1B9996C80046750F /* ChangeHDYNameVC.swift in Sources */,
