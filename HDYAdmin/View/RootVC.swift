@@ -110,8 +110,19 @@ class RootVC: UIViewController {
     
     //绑定页面点击事件
     @IBAction func btnPageTapped(sender: AnyObject) {
-        var tag = (sender as! UIButton).tag
+        var tag:Int
+        var obj =  sender as? UIButton
+        if (obj == nil)
+        {
+           var   barobj = sender as? UIBarButtonItem
+            tag = barobj!.tag
+        }else
+        {
+            tag = obj!.tag
+        }
+     
         ButtonTap(tag)
+    //    UIBarItem
     }
     
     func ButtonTap(tag:Int)

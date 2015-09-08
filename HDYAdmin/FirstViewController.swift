@@ -14,7 +14,7 @@ class FirstViewController: RootVC ,UICollectionViewDataSource ,UICollectionViewD
     @IBOutlet var collectionView: UICollectionView!
     
     let myConfig=[
-        ["name":"创建活动","targetVC":"NewActivityVC"],
+        ["name":"创建活动","targetVC":"AddActivityVC"],
         ["name":"活动一览","targetVC":"MyActivityVC"],
         ["name":"专辑一览","targetVC":"MyAlbumListVC"],
         ["name":"地点一览","targetVC":"MyLocationVC"],

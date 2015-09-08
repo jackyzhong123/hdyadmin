@@ -11,6 +11,7 @@ import UIKit
 
 class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     
     var albumDetail:AlbumDetail?
     var locationDetail:LocationDetail?
@@ -18,9 +19,8 @@ class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePi
     //MARK: 页面变量
     var listData:Array<LocationDetail> = []
     let cellIdentifier:String = "Cell"
-    
     var imgCover = AppConfig.Url_DefaultImg
-    @IBOutlet weak var tableView: UITableView!
+
     
     
     //MARK: 页面生存周期
@@ -36,16 +36,10 @@ class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePi
     //MARK: 渲染详细
     override func RenderDetail()
     {
-        
         UIHelper.SetNaviBarRightItemWithName(self, action: "toggleRightMenu:", strName: "保存")
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"selectAlbum:" , name: AppConfig.NF_SelectAlbum, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"selectLocation:" , name: AppConfig.NF_SelectLocation, object: nil)
-        
     }
-    
-    
-    
     
     
     func toggleRightMenu(sender: AnyObject)
@@ -65,9 +59,7 @@ class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePi
     }
     
     
-    func selectAlbum(notification:NSNotification) {
-        
-        
+    func selectAlbum(notification:NSNotification) {        
         var indePath:NSIndexPath = NSIndexPath(forRow: 3, inSection: 0)
         var cell : NALabel_Text_IconCell = self.tableView.cellForRowAtIndexPath(indePath) as! NALabel_Text_IconCell
         self.albumDetail = notification.object as? AlbumDetail;
@@ -190,8 +182,8 @@ class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePi
             // customCell.imgCover
             
             customCell.myText.enabled = false
-            
-            customCell.title.text = "系列活动"
+            customCell.myText.text = "无"
+            customCell.title.text = "活动专辑"
             
             
             return customCell;
@@ -209,7 +201,7 @@ class NewActivityVC: RootVC ,UITableViewDelegate,UITableViewDataSource,UIImagePi
         {
             var customCell:NALabel_WebViewCell =  tableView.dequeueReusableCellWithIdentifier("NALabel_WebViewCell") as! NALabel_WebViewCell
             // customCell.imgCover
-            customCell.myText.text = "dasdfasdf"
+         //   customCell.myText.text = "dasdfasdf"
             
             
             return customCell;

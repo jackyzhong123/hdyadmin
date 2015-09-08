@@ -103,6 +103,7 @@ class AppConfig: NSObject {
     static var NF_SelectAlbum = "SelectAlbum"
     static var NF_SelectLocation = "SelectLocation"
     static var NF_ChangeUerProfile = "ChangeUerProfile"
+    static var NF_SelectTime = "SelectTime"
     
     
     
@@ -176,7 +177,7 @@ class AppConfig: NSObject {
         AppConfig.sharedAppConfig.Portrait = dataDir.objectForKey("Portrait") as! String
         AppConfig.sharedAppConfig.RealName = dataDir.objectForKey("RealName") as! String
         AppConfig.sharedAppConfig.IsTest = dataDir.objectForKey("IsTest") as! Bool
-        AppConfig.sharedAppConfig.MySex = dataDir.objectForKey("MySex") as! Int
+        AppConfig.sharedAppConfig.MySex = dataDir.objectForKey("MySex") as? Int
         AppConfig.sharedAppConfig.save()
         NSNotificationCenter.defaultCenter().postNotificationName("ReloadUserInfo_Notiication", object: nil)
     }
